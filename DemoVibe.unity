@@ -583,7 +583,7 @@ GameObject:
   - component: {fileID: 329425095}
   - component: {fileID: 329425094}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: HighText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1013,9 +1013,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 421735187}
-  - component: {fileID: 421735186}
   - component: {fileID: 421735189}
   - component: {fileID: 421735188}
+  - component: {fileID: 421735186}
   m_Layer: 0
   m_Name: Home
   m_TagString: Untagged
@@ -1035,7 +1035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea6e2ab669c93c4baf262538f62a2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intensity: 0
+  intensity: 0.556
   textbox: {fileID: 2122536692}
   slider: {fileID: 1974399227}
 --- !u!4 &421735187
@@ -1080,14 +1080,14 @@ PlayableDirector:
   m_GameObject: {fileID: 421735185}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 9b72cf5c8b8ef614cb56aabe22c11a2b, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: c3a096193d5978842aae2ef97c55aba9, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -7809521233856756302, guid: c3a096193d5978842aae2ef97c55aba9, type: 2}
-    value: {fileID: 421735186}
+    value: {fileID: 0}
   - key: {fileID: -5930740953022915750, guid: c3a096193d5978842aae2ef97c55aba9, type: 2}
     value: {fileID: 421735186}
   - key: {fileID: 942343558453963963, guid: 9b72cf5c8b8ef614cb56aabe22c11a2b, type: 2}
@@ -1454,7 +1454,7 @@ GameObject:
   - component: {fileID: 1265157239}
   - component: {fileID: 1265157238}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: LowText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2413,7 +2413,7 @@ GameObject:
   - component: {fileID: 2122536693}
   - component: {fileID: 2122536692}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: DebugText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
