@@ -12,6 +12,9 @@ Setup:
 Look at the demo scene for a demostration on how the script works.
 
 TO DO:
+
 Clean up codebase.
+
 Fix crashing issue upon closing compiled game. (Works fine in Play Mode.)
+
 Add proper doccumentation.
