@@ -46,6 +46,6 @@ public class LoveControlBehavior : PlayableBehaviour
             default:
                 break;
         }
-        
     }
+
 }

@@ -64,7 +64,7 @@ public class StartServerProcessAndScan : MonoBehaviour
         foreach (ButtplugClientDevice device in Devices)
         {
             device.SendStopDeviceCmd();
-            //device.SendRotateCmd
+            Debug.Log("Command Turned Off");
         }
 
     }

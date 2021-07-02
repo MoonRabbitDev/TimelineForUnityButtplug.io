@@ -416,7 +416,8 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: LoveControlClip
   m_Markers:
-    m_Objects: []
+    m_Objects:
+    - {fileID: 5411320868685461810}
 --- !u!74 &-5707843971913195897
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -794,6 +795,22 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects: []
+--- !u!114 &5411320868685461810
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 5
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 2a26d9c991ea6474eae9ad307c8907be, type: 2}
 --- !u!114 &6232302467322745713
 MonoBehaviour:
   m_ObjectHideFlags: 1
