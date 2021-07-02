@@ -1,5 +1,5 @@
 # TimelineForUnityButtplug.io
-A Unoffical Plugin using Unity's Timeline tool to create patterns for Buttplug.io.
+An Unoffical Plugin using Unity's Timeline tool to create patterns for Buttplug.io.
 
 # WORK IN PROGRESS: 
 Please report any bugs via Issues! I do not recommend using this code in a production project currently.
