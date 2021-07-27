@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Play a scripted Timeline event.
+//Created by K The Bunny
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;

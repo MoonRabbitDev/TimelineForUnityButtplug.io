@@ -3,7 +3,7 @@
 //
 // This is just a generic behavior, so you can attach it to any active object in
 // your scene and it'll run on scene load.
-//Created by the Buttplug.io Project, modified by K The Bunny
+// Created by the Buttplug.io Project, modified by K The Bunny
 
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ using UnityEngine.UI;
 
 public class StartServerProcessAndScan : MonoBehaviour
 {
-    [SerializeField, Range(0, 1)] public float intensity = 0.5f;
+    [SerializeField, Range(0, 1)] public float intensity = 0f;
     [SerializeField] public TextMeshProUGUI textbox;
     [SerializeField] public Slider slider;
 
@@ -76,66 +76,20 @@ public class StartServerProcessAndScan : MonoBehaviour
 
     public void quitGame()
     {
+        //CALL THIS EVENT BEFORE CLOSING THE GAME!
+        //Correctly shuts down the server, before killing the game process.
+        //The Unity Quit event is fucked.
         OnDestroy();
-        
-    }
-    private void OnApplicationQuit() {
-        
-    }
-    private async void Start()
-    {
-        client = new ButtplugUnityClient("Test Client");
-        Debug.Log("Trying to create client");
-
-        // Set up client event handlers before we connect.
-        client.DeviceAdded += AddDevice;
-        client.DeviceRemoved += RemoveDevice;
-        client.ScanningFinished += ScanFinished;
-
-        // Try to create the client.
-        try {
-            await ButtplugUnityHelper.StartProcessAndCreateClient(client, new ButtplugUnityOptions {
-                // Since this is an example, we'll have the unity class output everything its doing to the logs.
-                OutputDebugMessages = true,
-            });
-        }
-        catch (ApplicationException e) {
-            Debug.Log("Got an error while starting client");
-            Debug.Log(e);
-            return;
-        }
-
-        await client.StartScanningAsync();
-    }
-
-    private async void OnDestroy()
-    {
-        Devices.Clear();
-
-        // On object shutdown, disconnect the client and just kill the server
-        // process. Server process shutdown will be cleaner in future builds.
-        if (client != null)
-        {
-            client.DeviceAdded -= AddDevice;
-            client.DeviceRemoved -= RemoveDevice;
-            client.ScanningFinished -= ScanFinished;
-            await client.DisconnectAsync();
-            client.Dispose();
-            client = null;
-        }
-
-        ButtplugUnityHelper.StopServer();
-        Debug.Log("I am destroyed now");
-        System.Diagnostics.Process.GetCurrentProcess().Kill();
-    }
-
-    private void OnValidate()
-    {
         
     }
 
     private void UpdateDevices(int rotation)
     {
+        //What the cases do:
+        //0: Typical Viberation
+        //1: Rotation + Viberation
+        //2: Counter-Clockwise Rotation + Vibration
+        //0 Should be for most devices, rest should be used for Wands(?)
         foreach (ButtplugClientDevice device in Devices)
         {
             switch (rotation)
@@ -177,5 +131,53 @@ public class StartServerProcessAndScan : MonoBehaviour
     private void Log(object text)
     {
         Debug.Log("<color=red>Buttplug:</color> " + text, this);
+    }
+
+    private async void Start()
+    {
+        client = new ButtplugUnityClient("Test Client");
+        Debug.Log("Trying to create client");
+
+        // Set up client event handlers before we connect.
+        client.DeviceAdded += AddDevice;
+        client.DeviceRemoved += RemoveDevice;
+        client.ScanningFinished += ScanFinished;
+
+        // Try to create the client.
+        try {
+            await ButtplugUnityHelper.StartProcessAndCreateClient(client, new ButtplugUnityOptions {
+                // Since this is an example, we'll have the unity class output everything its doing to the logs.
+                OutputDebugMessages = true,
+            });
+        }
+        catch (ApplicationException e) {
+            Debug.Log("Got an error while starting client");
+            Debug.Log(e);
+            return;
+        }
+
+        await client.StartScanningAsync();
+    }
+
+
+        private async void OnDestroy()
+        {
+        Devices.Clear();
+
+        // On object shutdown, disconnect the client and just kill the server
+        // process. Server process shutdown will be cleaner in future builds.
+        if (client != null)
+        {
+            client.DeviceAdded -= AddDevice;
+            client.DeviceRemoved -= RemoveDevice;
+            client.ScanningFinished -= ScanFinished;
+            await client.DisconnectAsync();
+            client.Dispose();
+            client = null;
+        }
+
+        ButtplugUnityHelper.StopServer();
+        Debug.Log("I am destroyed now");
+        System.Diagnostics.Process.GetCurrentProcess().Kill();
     }
 }

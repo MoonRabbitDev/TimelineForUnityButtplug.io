@@ -12,7 +12,7 @@ using UnityEngine.Playables;
 [SerializeField]
 public enum RotateTypes
 {
-    None,
+    Typical,
     Clockwise,
     CounterClockwise
 
@@ -33,7 +33,7 @@ public class LoveControlBehavior : PlayableBehaviour
             return;
         switch (typeOfVibe)
         {
-            case RotateTypes.None:
+            case RotateTypes.Typical:
             server.ChangeIntenseTimeline(intensity,0);
                 break;
             case RotateTypes.Clockwise:
