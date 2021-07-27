@@ -45,7 +45,12 @@ public class StartServerProcessAndScan : MonoBehaviour
 
     public void TurnOnNoRotate()
     {
-        UpdateDevices(0);
+        foreach (ButtplugClientDevice device in Devices)
+        {
+            device.SendVibrateCmd(intensity);
+            Debug.Log("Command Turned Off");
+        }
+       
 
     }
     public void TurnOnCRotate()
@@ -71,16 +76,16 @@ public class StartServerProcessAndScan : MonoBehaviour
 
     public void quitGame()
     {
-        Application.Quit();
-
+        OnDestroy();
+        
     }
     private void OnApplicationQuit() {
-        Destroy(this.gameObject);
+        
     }
     private async void Start()
     {
         client = new ButtplugUnityClient("Test Client");
-        Log("Trying to create client");
+        Debug.Log("Trying to create client");
 
         // Set up client event handlers before we connect.
         client.DeviceAdded += AddDevice;
@@ -95,8 +100,8 @@ public class StartServerProcessAndScan : MonoBehaviour
             });
         }
         catch (ApplicationException e) {
-            Log("Got an error while starting client");
-            Log(e);
+            Debug.Log("Got an error while starting client");
+            Debug.Log(e);
             return;
         }
 
@@ -120,12 +125,13 @@ public class StartServerProcessAndScan : MonoBehaviour
         }
 
         ButtplugUnityHelper.StopServer();
-        Log("I am destroyed now");
+        Debug.Log("I am destroyed now");
+        System.Diagnostics.Process.GetCurrentProcess().Kill();
     }
 
     private void OnValidate()
     {
-
+        
     }
 
     private void UpdateDevices(int rotation)
@@ -153,19 +159,19 @@ public class StartServerProcessAndScan : MonoBehaviour
 
     private void AddDevice(object sender, DeviceAddedEventArgs e)
     {
-        Log($"Device {e.Device.Name} Connected!");
+        Debug.Log($"Device {e.Device.Name} Connected!");
         Devices.Add(e.Device);
     }
 
     private void RemoveDevice(object sender, DeviceRemovedEventArgs e)
     {
-        Log($"Device {e.Device.Name} Removed!");
+        Debug.Log($"Device {e.Device.Name} Removed!");
         Devices.Remove(e.Device);
     }
 
     private void ScanFinished(object sender, EventArgs e)
     {
-        Log("Device scanning is finished!");
+        Debug.Log("Device scanning is finished!");
     }
 
     private void Log(object text)
