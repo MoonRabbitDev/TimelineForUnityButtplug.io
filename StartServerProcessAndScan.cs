@@ -80,6 +80,15 @@ public class StartServerProcessAndScan : MonoBehaviour
         //Correctly shuts down the server, before killing the game process.
         //The Unity Quit event is fucked.
         OnDestroy();
+        System.Diagnostics.Process.GetCurrentProcess().Kill();
+        
+    }
+    public void closePlayMode()
+    {
+        //CALL THIS EVENT BEFORE CLOSING THE GAME IN PLAY MODE!
+        //Correctly shuts down the server, before killing the game process.
+        //The Unity Quit event is fucked.
+        OnDestroy();
         
     }
 
@@ -178,6 +187,5 @@ public class StartServerProcessAndScan : MonoBehaviour
 
         ButtplugUnityHelper.StopServer();
         Debug.Log("I am destroyed now");
-        System.Diagnostics.Process.GetCurrentProcess().Kill();
     }
 }

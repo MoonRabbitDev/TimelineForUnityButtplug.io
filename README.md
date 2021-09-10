@@ -16,6 +16,8 @@ Look at the demo scene for a demostration on how the script works.
 
 Clean up codebase.
 
+Fix crashing issue upon closing compiled game. (Play Mode was not crashing in 2019.)
+
 Add proper doccumentation.
 
 ## Tutorials
